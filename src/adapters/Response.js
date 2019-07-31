@@ -1,18 +1,18 @@
 // @flow
 
-import { Record } from "immutable";
-import type { RecordFactory, RecordOf } from "immutable";
+import { Record, List } from "immutable";
+import type { RecordFactory, RecordOf, List as TList } from "immutable";
 
 export type ResponseProp<I: Object> = {|
   count: number,
-  items: Array<I>
+  items: TList<I>
 |};
 
 export type ResponseRecord<I: Object> = RecordOf<ResponseProp<I>>;
 
 const defaultValues: ResponseProp<{}> = {
   count: 0,
-  items: []
+  items: List()
 };
 
 export function makeResponseRecord<I>(
@@ -21,5 +21,5 @@ export function makeResponseRecord<I>(
 ): RecordOf<ResponseProp<I>> {
   const { count, items } = res;
   const factory: RecordFactory<ResponseProp<I>> = Record(defaultValues);
-  return factory({ count, items: items.map(itemFactory) });
+  return factory({ count, items: List(items.map(itemFactory)) });
 }

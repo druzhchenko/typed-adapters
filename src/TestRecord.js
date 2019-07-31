@@ -8,7 +8,6 @@ import { makeResponseRecord } from "./adapters/Response";
 const TestRecord = () => {
   const record = makeResponseRecord(response, makeDocRecord);
   console.log(record);
-
   return <div className="App">TEST RECORD</div>;
 };
 
